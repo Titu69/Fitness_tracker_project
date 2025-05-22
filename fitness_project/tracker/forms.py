@@ -2,6 +2,7 @@ from django import forms
 #from .models import UserProfile, Workout, Meal, Hydration
 from django import forms
 from datetime import date
+from .data.food_calories import FOOD_CALORIES
 
 from django import forms
 from datetime import date
@@ -21,8 +22,9 @@ class WorkoutForm(forms.Form):
 
 class MealForm(forms.Form):
     user_id = forms.CharField(required=True)
-    food_items = forms.CharField(widget=forms.Textarea, required=True)
-    calories = forms.FloatField(min_value=0, required=True)
+    FOOD_CHOICES = [(food, food) for food in FOOD_CALORIES.keys()]
+    food_items = forms.ChoiceField(choices=FOOD_CHOICES, required=True)
+    #calories = forms.FloatField(min_value=0, required=True)
     date = forms.DateField(initial=date.today, required=True)
 
 class HydrationForm(forms.Form):

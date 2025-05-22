@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Meal</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        label, select, input { display: block; margin: 10px 0; }
+        .calorie-box { margin-top: 10px; font-weight: bold; color: #333; }
+        button { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Log Your Meal</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="user_id">User ID:</label>
+        {{ form.user_id }}
+
+        <label for="food_items">Select Food:</label>
+        {{ form.food_items }}
+
+        <div class="calorie-box">
+            Estimated Calories: <span id="calories">0</span> kcal
+        </div>
+
+        <label for="date">Date:</label>
+        {{ form.date }}
+
+        <button type="submit">Log Meal</button>
+    </form>
+
+    <script>
+        const calorieMap = {{ food_calories_json|safe }};
+        const dropdown = document.getElementById("id_food_items");
+        const calorieDisplay = document.getElementById("calories");
+
+        dropdown.addEventListener("change", function () {
+            const selected = dropdown.value;
+            const calories = calorieMap[selected] || 0;
+            calorieDisplay.textContent = calories;
+        });
+
+        // On page load, show initial value
+        window.onload = () => {
+            const event = new Event("change");
+            dropdown.dispatchEvent(event);
+        };
+    </script>
+</body>
+</html>

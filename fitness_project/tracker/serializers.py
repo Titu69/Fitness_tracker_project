@@ -1,27 +1,3 @@
-'''
-from rest_framework import serializers
-from .models import UserProfile, Workout, Meal, Hydration
-
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = '__all__'
-
-class WorkoutSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Workout
-        fields = '__all__'
-
-class MealSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Meal
-        fields = '__all__'
-
-class HydrationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Hydration
-        fields = '__all__'
-'''
 
 # serializers.py
 from rest_framework import serializers
