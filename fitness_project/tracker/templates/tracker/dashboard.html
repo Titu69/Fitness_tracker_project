@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ user.username }}</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <a href="{% url 'add_workout' %}" class="btn btn-primary w-100 mb-2">Add Workout</a>
+        <a href="{% url 'add_meal' %}" class="btn btn-success w-100 mb-2">Add Meal</a>
+        <a href="{% url 'add_hydration' %}" class="btn btn-info w-100">Add Hydration</a>
+    </div>
+    <div class="col-md-8">
+        <h5>Workout Trend</h5>
+        <img src="{% static 'images/workout_trend.png' %}" class="img-fluid" alt="Workout Trend">
+    </div>
+</div>
+{% endblock %}

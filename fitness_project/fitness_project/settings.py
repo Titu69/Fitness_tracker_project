@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration_app'
+    'registration_app',
+    'rest_framework',
+    'tracker',
 ]
 
 MIDDLEWARE = [
@@ -73,13 +75,12 @@ WSGI_APPLICATION = 'fitness_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'fitness_tracker_database',
         'USER':'root',
-        'PASSWORD':'Sonia@77281',
+        'PASSWORD':'Joiaaiaxom12@',
         'HOST':'localhost',
         'PORT':'3306'
     } 
@@ -121,7 +122,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -131,6 +133,4 @@ connect(
     db='fitness_tracker_database',
     host='localhost',
     port=27017,
-    username='sonia',  # optional
-    password='Sonia772',  # optional
-)
+   )
