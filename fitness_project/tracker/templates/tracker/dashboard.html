@@ -1,18 +1,43 @@
-{% extends 'base.html' %}
+{% extends 'tracker/base.html' %}
+{% load static %}
+
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<h2>Welcome, {{ user.username }}</h2>
-
-<div class="row">
-    <div class="col-md-4">
-        <a href="{% url 'add_workout' %}" class="btn btn-primary w-100 mb-2">Add Workout</a>
-        <a href="{% url 'add_meal' %}" class="btn btn-success w-100 mb-2">Add Meal</a>
-        <a href="{% url 'add_hydration' %}" class="btn btn-info w-100">Add Hydration</a>
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-primary">Welcome, {{ request.session.mongo_user }}</h2>
+        <p class="text-muted">Track your daily fitness activities here</p>
     </div>
-    <div class="col-md-8">
-        <h5>Workout Trend</h5>
-        <img src="{% static 'images/workout_trend.png' %}" class="img-fluid" alt="Workout Trend">
+
+    <div class="row g-4">
+        <!-- Action Buttons -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-3">Quick Actions</h5>
+                    <a href="{% url 'log_workout' %}" class="btn btn-outline-primary w-100 mb-3 btn-lg fw-semibold">
+                        🏋️ Log Workout
+                    </a>
+                    <a href="{% url 'log_meal' %}" class="btn btn-outline-success w-100 mb-3 btn-lg fw-semibold">
+                        🍽️ Log Meal
+                    </a>
+                    <a href="{% url 'log_hydration' %}" class="btn btn-outline-info w-100 btn-lg fw-semibold">
+                        💧 Log Hydration
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workout Trend Image -->
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">📈 Workout Trend</h5>
+                    <img src="{% static 'images/workout_trend.png' %}" class="img-fluid rounded" alt="Workout Trend">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

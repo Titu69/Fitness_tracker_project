@@ -9,8 +9,9 @@ class UserProfile(Document):
     def __str__(self):
         return f"{self.name} ({self.email})"
 
-class Workout(Document):
-    user = ReferenceField(UserProfile, required=True)
+class Workout2(Document):
+    user = StringField(required=True)
+    #user = ReferenceField(UserProfile, required=True)
     workout_type = StringField(required=True)
     duration = IntField(required=True)  # duration in minutes
     calories_burned = IntField()
@@ -28,10 +29,11 @@ class Meal(Document):
     def __str__(self):
         return f"Meal({self.meal_type}) for {self.user.name} on {self.date}"
 
-class Hydration(Document):
-    user = ReferenceField(UserProfile, required=True)
-    amount = FloatField(required=True)  # amount in liters or ml
+class Hydration2(Document):
+    user_id = StringField(required=True)
+    water_intake_liters = FloatField(required=True)
     date = DateField(required=True)
 
     def __str__(self):
         return f"Hydration({self.amount}L) for {self.user.name} on {self.date}"
+

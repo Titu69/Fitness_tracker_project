@@ -1,0 +1,22 @@
+WORKOUT_CALORIES  = {
+    "Running (6 mph)": 660,
+    "Walking (3.5 mph)": 280,
+    "Cycling (12-14 mph)": 560,
+    "Swimming (moderate pace)": 500,
+    "Yoga": 240,
+    "Dancing": 330,
+    "Jumping rope": 750,
+    "Hiking": 430,
+    "Strength training (moderate)": 250,
+    "Strength training (intense)": 450,
+    "Aerobics (high impact)": 480,
+    "Elliptical trainer": 600,
+    "Basketball (game)": 630,
+    "Soccer (casual play)": 500,
+    "Tennis (singles)": 570,
+    "Rowing (moderate pace)": 490,
+    "Skating (roller/in-line)": 450,
+    "Climbing stairs": 650,
+    "Zumba": 400,
+    "Pilates": 200
+}

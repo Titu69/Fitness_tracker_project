@@ -1,10 +1,87 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-<h3>Add Workout</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Workout</title>
+    <style>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 25px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .errorlist {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <h2>Log Your Workout</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="user_id">User ID:</label>
+        {{ form.user_id }}
+
+
+        <label for="workout_type">Select Workout:</label>
+        {{ form.workout_type }}
+
+        <label for="duration">Duration (in minutes):</label>
+        {{ form.duration }}
+
+        <div class="calorie-box">
+            Estimated Calories Burned: <span id="calories">0</span> kcal
+        </div>
+
+        <label for="date">Date:</label>
+        {{ form.date }}
+
+        <button type="submit">Log Workout</button>
+    </form>
+
+    <script>
+        
+
+    const calorieMap = {{ workout_calories_json|safe }};
+    const dropdown = document.getElementById("id_workout_type");
+    const durationInput = document.getElementById("id_duration");
+    const calorieDisplay = document.getElementById("calories");
+
+    function updateCalories() {
+        const selected = dropdown.value;
+        const caloriesPerMin = calorieMap[selected] || 0;
+        const duration = parseInt(durationInput.value) || 0;
+        const totalCalories = caloriesPerMin * duration;
+        calorieDisplay.textContent = totalCalories;
+    }
+
+    dropdown.addEventListener("change", updateCalories);
+    durationInput.addEventListener("input", updateCalories);
+
+    
+    window.onload = updateCalories;
+    </script>
+</body>
+</html>
